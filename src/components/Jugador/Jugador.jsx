@@ -1,25 +1,32 @@
-import React from 'react'
-import {connect} from 'react-redux' 
+import React from 'react';
+import {connect} from 'react-redux';
+import {Div, H1, Img, Article, DivImg, DivName, H4, H5, Button} from '../../styled/base';
 
 const Jugador = ({jugadores, Add_Titular, Add_Suplente}) => {
     return (
         <section>
-            <h1>Jugadores</h1>
-            <div className="contianer-jugadores">
+            <H1>Jugadores</H1>
+            <Div>
                 {
                     jugadores.map(jugador => (
-                                                <article className="jugador" key={jugador.id}>
-                                                    <img src={jugador.imagen} alt={jugador.name}/>
-                                                    <h5>Nombre :{jugador.name} {jugador.lastName}</h5>
-                                                    <h5>Edad: {jugador.edad}</h5>
+                                                <Article key={jugador.id}>
+                                                    <DivImg>
+                                                        <Img src={jugador.imagen} alt={jugador.name}/>
+                                                    </DivImg>
+                                                    <DivName>
+                                                        <H4>Nombre:</H4>
+                                                        <H5> {jugador.name} {jugador.lastName}</H5>
+                                                        <H4>Edad: </H4>
+                                                        <H5>{jugador.edad}</H5>
+                                                    </DivName>
                                                     <div>
-                                                        <button onClick={() => Add_Titular(jugador)}>Titular</button>
-                                                        <button onClick={() => Add_Suplente(jugador)}>Suplente</button>
+                                                        <Button onClick={() => Add_Titular(jugador)}>Titular</Button>
+                                                        <Button onClick={() => Add_Suplente(jugador)}>Suplente</Button>
                                                     </div>
-                                                </article>
+                                                </Article>
                                             ))
                 }
-            </div>
+            </Div>
         </section>    
     )
 }

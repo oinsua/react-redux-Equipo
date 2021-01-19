@@ -1,23 +1,32 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Div, H1, Img, Article, DivImg, DivName, H4, H5, Button} from '../../styled/base';
 
 const Titular = ({titulares, Delete_Titular}) => {
     return (
-        <div className="container-titulares">
-            <h1>Titulares</h1>
+        <section>
+            <H1>Titulares</H1>
+            <Div>
             {
                 titulares.map(titular => (
-                    <article className="titular" key={titular.id}>
-                        <img src={titular.imagen} alt={titular.name}/>
-                        <h5>Nombre :{titular.name} {titular.lastName}</h5>
-                        <h5>Edad: {titular.edad}</h5>
+                    <Article className="titular" key={titular.id}>
+                        <DivImg>
+                            <Img src={titular.imagen} alt={titular.name}/>
+                        </DivImg>
+                        <DivName>
+                            <H4>Nombre:</H4>
+                            <H5>Nombre :{titular.name} {titular.lastName}</H5>
+                            <H4>Edad: </H4>
+                            <H5>Edad: {titular.edad}</H5>
+                        </DivName>
                         <div>
-                            <button onClick={() => Delete_Titular(titular)}>X</button>
+                            <Button onClick={() => Delete_Titular(titular)}>X</Button>
                         </div>
-                    </article>
+                    </Article>
                 ))
             }
-        </div>
+            </Div>
+        </section>
     )
 }
 
