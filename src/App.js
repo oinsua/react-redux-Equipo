@@ -1,10 +1,12 @@
 import './App.css';
 /*Importar los componentes para Aplicar Redux */
 import {Provider} from 'react-redux';
-import store from './reducer/store';
+import generateStore from './redux/store';
 import React from 'react';
 import Jugador from './components/Jugador/Jugador';
 import Team from './components/Team/Team';
+
+const store = generateStore();
 
 const App = () => (
   <Provider store={store}>

@@ -1,8 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { deleteTitular } from '../../redux/jugador';
 import {Div, H1, Img, Article, DivImg, DivName, H4, H5, Button} from '../../styled/base';
 
-const Titular = ({titulares, Delete_Titular}) => {
+const Titular = () => {
+    const dispatch = useDispatch();
+    const titulares = useSelector(state => state.jugadores.titulares)
     return (
         <section>
             <H1>Titulares</H1>
@@ -15,12 +18,12 @@ const Titular = ({titulares, Delete_Titular}) => {
                         </DivImg>
                         <DivName>
                             <H4>Nombre:</H4>
-                            <H5>Nombre :{titular.name} {titular.lastName}</H5>
+                            <H5>{titular.name} {titular.lastName}</H5>
                             <H4>Edad: </H4>
-                            <H5>Edad: {titular.edad}</H5>
+                            <H5>{titular.edad}</H5>
                         </DivName>
                         <div>
-                            <Button onClick={() => Delete_Titular(titular)}>X</Button>
+                            <Button onClick={() => dispatch(deleteTitular(titular)) }>X</Button>
                         </div>
                     </Article>
                 ))
@@ -30,15 +33,5 @@ const Titular = ({titulares, Delete_Titular}) => {
     )
 }
 
-const mapStateToProps = (state) => ({titulares: state.titulares})
+export default Titular;
 
-const mapDispatchToProps = (dispatch) => ({
-    Delete_Titular(titular){
-        dispatch({
-            type: "Delete_Titular",
-            titular
-        })
-    }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Titular) 

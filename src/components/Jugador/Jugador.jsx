@@ -1,8 +1,18 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPlayer, addTitular, addSuplente} from '../../redux/jugador';
 import {Div, H1, Img, Article, DivImg, DivName, H4, H5, Button} from '../../styled/base';
 
-const Jugador = ({jugadores, Add_Titular, Add_Suplente}) => {
+const Jugador = () => {
+
+    const dispatch = useDispatch(); //Iniciar una variable para despachar las acciones
+    const jugadores = useSelector(state => state.jugadores.jugadores) //Se realiza una copia de los jugadores que estan dentro del state
+  
+    /*Obtener los items desde la data a traves de la accion fetch API */
+    useEffect(()=> {
+      dispatch(getPlayer('./data/data.json')); //Se despacha la action para obtener los items.
+    },[dispatch])
+
     return (
         <section>
             <H1>Jugadores</H1>
@@ -20,8 +30,8 @@ const Jugador = ({jugadores, Add_Titular, Add_Suplente}) => {
                                                         <H5>{jugador.edad}</H5>
                                                     </DivName>
                                                     <div>
-                                                        <Button onClick={() => Add_Titular(jugador)}>Titular</Button>
-                                                        <Button onClick={() => Add_Suplente(jugador)}>Suplente</Button>
+                                                        <Button onClick={() => dispatch(addTitular(jugador)) }>Titular</Button>
+                                                        <Button onClick={() => dispatch(addSuplente(jugador)) }>Suplente</Button>
                                                     </div>
                                                 </Article>
                                             ))
@@ -31,23 +41,4 @@ const Jugador = ({jugadores, Add_Titular, Add_Suplente}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-   return {jugadores : state.jugadores};
-}
-
-const matDispatchToProps = dispatch => ({
-    Add_Titular(jugador) {
-        dispatch({
-            type: "Add_Titular",
-            jugador
-        })
-    },
-    Add_Suplente(jugador){
-        dispatch({
-            type: "Add_Suplente",
-            jugador
-        })
-    }
-});
-
-export default connect(mapStateToProps, matDispatchToProps)(Jugador); 
+export default Jugador;
