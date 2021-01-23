@@ -1,0 +1,20 @@
+//Cargar los jugadores cuando se hace loading en la aplicacion
+export const START_GET_PLAYER = 'START_GET_PLAYER';
+export const SUCCESS_GET_PLAYER = 'SUCCESS_GET_PLAYER';
+export const ERROR_GET_PLAYER = 'ERROR_GET_PLAYER';
+
+//Agregar y eliminar  los titulares
+export const ADD_TITULAR_REQUEST = 'ADD_TITULAR_REQUEST';
+export const ADD_TITULAR = 'ADD_TITULAR';
+export const ERROR_ADD_TITULAR = 'ERROR_ADD_TITULAR';
+export const DELETE_TITULAR_REQUEST = 'DELETE_TITULAR_REQUEST';
+export const DELETE_TITULAR = 'DELETE_TITULAR';
+export const ERROR_DELETE_TITULAR = 'ERROR_DELETE_TITULAR';
+
+//Agregar y eliminar los suplentes
+export const ADD_SUBSTITUT_REQUEST = 'ADD_SUBSTITUT_REQUEST';
+export const ADD_SUBSTITUT = 'ADD_SUBSTITUT';
+export const ERROR_ADD_SUBSTITUT = 'ERROR_ADD_SUBSTITUT';
+export const DELETE_SUBSTITUT_REQUEST = 'DELETE_SUBSTITUT_REQUEST';
+export const DELETE_SUBSTITUT = 'DELETE_SUBSTITUT';
+export const ERROR_DELETE_SUBSTITUT = 'ERROR_DELETE_SUBSTITUT';

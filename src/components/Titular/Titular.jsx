@@ -1,18 +1,18 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { deleteTitular } from '../../redux/jugador';
+import {deleteTitular} from '../../redux/action/jugadores'
 import {Div, H1, Img, Article, DivImg, DivName, H4, H5, Button} from '../../styled/base';
 
 const Titular = () => {
     const dispatch = useDispatch();
-    const titulares = useSelector(state => state.jugadores.titulares)
+    const {titular, error} = useSelector(state => state);
     return (
         <section>
             <H1>Titulares</H1>
             <Div>
             {
-                titulares.map(titular => (
-                    <Article className="titular" key={titular.id}>
+                titular && titular.map(titular => (
+                    <Article  key={titular.imagen}>
                         <DivImg>
                             <Img src={titular.imagen} alt={titular.name}/>
                         </DivImg>
@@ -27,6 +27,9 @@ const Titular = () => {
                         </div>
                     </Article>
                 ))
+            }
+            {
+                     error && <H4>Se ha producido un error en la llamada a la API. Mensaje : {error}</H4> 
             }
             </Div>
         </section>
